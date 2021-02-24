@@ -1,0 +1,48 @@
+#Assignment 4
+
+"""
+5.Write a program which contains filter(), map() and reduce() in it. Python application which
+contains one list of numbers. List contains the numbers which are accepted from user. Filter
+should filter out all prime numbers. Map function will multiply each number by 2. Reduce will
+return Maximum number from that numbers. (You can also use normal functions instead of
+lambda functions).
+Input List = [2, 70 , 11, 10, 17, 23, 31, 77]
+List after filter = [2, 11, 17, 23, 31]
+List after map = [4, 22, 34, 46, 62]
+Output of reduce = 62 
+"""
+from functools import reduce
+
+
+def primecheker(ino):
+    for i in range(2, (ino // 2) + 1):
+        if ino % i == 0:
+            return False
+    return True
+ 
+def maxfinder(ino1, ino2):
+    if ino1 >= ino2 :
+        return ino1
+    else:
+        return ino2
+def main():
+    isize = int(input("Enter the size of data :"))
+    arr = []
+    for i in range(isize):
+        itemp = int(input(f"Enter {i + 1} element :"))
+        arr.append(itemp)
+    print(f"original input is {arr}")
+    
+    newdata = list(filter(primecheker, arr))
+    print(f"Filter output is {newdata}")
+        
+    newdata2 = list(map (lambda ino: ino * 2, newdata))
+    print(f"Map output is {newdata2}")
+    
+    output = reduce(maxfinder, newdata2)
+    print(f"Final output after reduce is {output}")
+    
+    
+    
+if __name__ == "__main__":
+    main()
